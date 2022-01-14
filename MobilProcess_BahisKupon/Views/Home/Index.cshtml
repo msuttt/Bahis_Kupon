@@ -1,0 +1,83 @@
+﻿@using MobilProcess_BahisKupon.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@model MemberandCoupons
+
+    <div class="row">
+        @using (Html.BeginForm("Index", "Home"))
+        {
+            int toplamKupon = 0;
+            decimal? toplamKuponBedel = 0;
+
+            if (Model != null)
+            {
+                toplamKupon = Model.coupons.Count;
+
+                foreach (var item in Model.coupons)
+                {
+                    toplamKuponBedel = toplamKuponBedel = item.Price;
+                }
+            }
+
+
+
+            <table style="margin-top:20px;">
+                <tr>
+                    <td>@Html.Label("MemberId:")</td>
+                    <td>@Html.TextBox("MemberId")</td>
+                    <td></td>
+                    <td><button id="Getir">Getir</button></td>
+                </tr>
+
+
+            </table>
+
+            <table style="margin-top:50px;">
+                <tr style="background-color:burlywood">
+                    <td style="border:solid;text-align:center">@Html.Label("Üye Adı")</td>
+                    <td style="border:solid;text-align:center">@Html.Label("Üye Soyadı")</td>
+                    <td style="border:solid;text-align:center">@Html.Label("Kupon Adedi")</td>
+                    <td style="border:solid;text-align:center">@Html.Label("Kupon Toplam Bedel")</td>
+
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (var item in Model.members)
+                    {
+                        <tr>
+                            <td style="border:solid;text-align:center">@Html.Label(item.Name)</td>
+                            <td style="border:solid;text-align:center">@Html.Label(item.LastName)</td>
+                            <td style="border:solid;text-align:center">@Html.Label(toplamKupon.ToString())</td>
+                            <td style="border:solid;text-align:center">@Html.Label(toplamKuponBedel.ToString())</td>
+                        </tr>
+                    }
+                }
+
+
+            </table>
+
+            <table style="margin-top:50px;">
+                <tr style="background-color:burlywood">
+                    <td style="border:solid;text-align:center">@Html.Label("Kupon Numarası")</td>
+                    <td style="border:solid;text-align:center">@Html.Label("Kupon Bedeli")</td>
+                    <td style="border:solid;text-align:center">@Html.Label("Kupon Kazancı")</td>
+                </tr>
+                @if (Model!= null)
+                {
+                    foreach (var item in Model.coupons)
+                    {
+                        <tr>
+                            <td style="border:solid;text-align:center">@Html.Label(item.IntegrationId)</td>
+                            <td style="border:solid;text-align:center">@Html.Label(item.Price.ToString())</td>
+                            <td style="border:solid;text-align:center">@Html.Label(item.Prize.ToString())</td>
+                        </tr>
+                    }
+                }
+
+
+            </table>
+        }
+
+    </div>

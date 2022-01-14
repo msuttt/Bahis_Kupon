@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestDB.dbo.EventCouponMasters' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EventCouponMasters">
+          <Key>
+            <PropertyRef Name="CouponId" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="CouponId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IntegrationId" Type="varchar" MaxLength="50" />
+          <Property Name="AccountId" Type="int" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="Price" Type="money" />
+          <Property Name="Multiply" Type="int" />
+          <Property Name="Combinations" Type="varchar" MaxLength="50" />
+          <Property Name="GameColumns" Type="int" />
+          <Property Name="MaxOdd" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="MaxPrize" Type="money" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Prize" Type="money" />
+          <Property Name="Odd" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ResultDate" Type="datetime" />
+          <Property Name="CouponType" Type="tinyint" />
+          <Property Name="AccountTerm" Type="varchar" MaxLength="50" />
+          <Property Name="Draw" Type="int" />
+          <Property Name="DeadLine" Type="datetime" />
+          <Property Name="PlatformId" Type="int" />
+          <Property Name="SourceId" Type="int" />
+          <Property Name="Refund" Type="money" />
+          <Property Name="Net" Type="money" />
+          <Property Name="Gross" Type="money" />
+          <Property Name="Bonus" Type="money" />
+          <Property Name="Tax" Type="money" />
+          <Property Name="CancelDate" Type="datetime" />
+          <Property Name="FindSuccess" Type="bit" />
+          <Property Name="PredefinedCouponId" Type="int" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="BusinessPhone" Type="varchar" MaxLength="50" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="District" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMail" Type="varchar" MaxLength="150" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Avatar" Type="varchar" MaxLength="50" />
+          <Property Name="SecretQuestion" Type="nvarchar" MaxLength="150" />
+          <Property Name="SecretAnswer" Type="nvarchar" MaxLength="150" />
+          <Property Name="PlatformId" Type="int" Nullable="false" />
+          <Property Name="SourceId" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+          <Property Name="IdStatus" Type="tinyint" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Agent" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Zip" Type="int" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupportedTeam" Type="int" />
+          <Property Name="ActivationCode" Type="nvarchar" MaxLength="32" />
+          <Property Name="IsEmailActivated" Type="bit" />
+          <Property Name="GoogleAnalyticsMS1" Type="nvarchar" MaxLength="25" />
+          <Property Name="GoogleAnalyticsMS2" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="TestDBModelStoreContainer">
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventCouponMasters" EntityType="Self.EventCouponMasters" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EventCouponMasters].[CouponId] AS [CouponId], 
+    [EventCouponMasters].[IntegrationId] AS [IntegrationId], 
+    [EventCouponMasters].[AccountId] AS [AccountId], 
+    [EventCouponMasters].[MemberId] AS [MemberId], 
+    [EventCouponMasters].[Price] AS [Price], 
+    [EventCouponMasters].[Multiply] AS [Multiply], 
+    [EventCouponMasters].[Combinations] AS [Combinations], 
+    [EventCouponMasters].[GameColumns] AS [GameColumns], 
+    [EventCouponMasters].[MaxOdd] AS [MaxOdd], 
+    [EventCouponMasters].[MaxPrize] AS [MaxPrize], 
+    [EventCouponMasters].[CreateDate] AS [CreateDate], 
+    [EventCouponMasters].[Prize] AS [Prize], 
+    [EventCouponMasters].[Odd] AS [Odd], 
+    [EventCouponMasters].[ResultDate] AS [ResultDate], 
+    [EventCouponMasters].[CouponType] AS [CouponType], 
+    [EventCouponMasters].[AccountTerm] AS [AccountTerm], 
+    [EventCouponMasters].[Draw] AS [Draw], 
+    [EventCouponMasters].[DeadLine] AS [DeadLine], 
+    [EventCouponMasters].[PlatformId] AS [PlatformId], 
+    [EventCouponMasters].[SourceId] AS [SourceId], 
+    [EventCouponMasters].[Refund] AS [Refund], 
+    [EventCouponMasters].[Net] AS [Net], 
+    [EventCouponMasters].[Gross] AS [Gross], 
+    [EventCouponMasters].[Bonus] AS [Bonus], 
+    [EventCouponMasters].[Tax] AS [Tax], 
+    [EventCouponMasters].[CancelDate] AS [CancelDate], 
+    [EventCouponMasters].[FindSuccess] AS [FindSuccess], 
+    [EventCouponMasters].[PredefinedCouponId] AS [PredefinedCouponId], 
+    [EventCouponMasters].[Status] AS [Status]
+    FROM [dbo].[EventCouponMasters] AS [EventCouponMasters]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="HomePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SecretQuestion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SecretAnswer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PlatformId" Type="Int32" Nullable="false" />
+          <Property Name="SourceId" Type="Int32" Nullable="false" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+          <Property Name="IdStatus" Type="Byte" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Agent" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Zip" Type="Int32" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupportedTeam" Type="Int32" />
+          <Property Name="ActivationCode" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmailActivated" Type="Boolean" />
+          <Property Name="GoogleAnalyticsMS1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="GoogleAnalyticsMS2" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EventCouponMasters">
+          <Key>
+            <PropertyRef Name="CouponId" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="CouponId" Type="Guid" Nullable="false" />
+          <Property Name="IntegrationId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AccountId" Type="Int32" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Multiply" Type="Int32" />
+          <Property Name="Combinations" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GameColumns" Type="Int32" />
+          <Property Name="MaxOdd" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="MaxPrize" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Prize" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Odd" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ResultDate" Type="DateTime" Precision="3" />
+          <Property Name="CouponType" Type="Byte" />
+          <Property Name="AccountTerm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Draw" Type="Int32" />
+          <Property Name="DeadLine" Type="DateTime" Precision="3" />
+          <Property Name="PlatformId" Type="Int32" />
+          <Property Name="SourceId" Type="Int32" />
+          <Property Name="Refund" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Net" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Gross" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Bonus" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Tax" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CancelDate" Type="DateTime" Precision="3" />
+          <Property Name="FindSuccess" Type="Boolean" />
+          <Property Name="PredefinedCouponId" Type="Int32" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TestDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Members" EntityType="Self.Members" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="EventCouponMasters" EntityType="Self.EventCouponMasters" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestDBModelStoreContainer" CdmEntityContainer="TestDBEntities">
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="TestDBModel.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="MemberCode" ColumnName="MemberCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="BusinessPhone" ColumnName="BusinessPhone" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="SecretQuestion" ColumnName="SecretQuestion" />
+                <ScalarProperty Name="SecretAnswer" ColumnName="SecretAnswer" />
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Agent" ColumnName="Agent" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="SupportedTeam" ColumnName="SupportedTeam" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="IsEmailActivated" ColumnName="IsEmailActivated" />
+                <ScalarProperty Name="GoogleAnalyticsMS1" ColumnName="GoogleAnalyticsMS1" />
+                <ScalarProperty Name="GoogleAnalyticsMS2" ColumnName="GoogleAnalyticsMS2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TestDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventCouponMasters">
+            <EntityTypeMapping TypeName="TestDBModel.EventCouponMasters">
+              <MappingFragment StoreEntitySet="EventCouponMasters">
+                <ScalarProperty Name="CouponId" ColumnName="CouponId" />
+                <ScalarProperty Name="IntegrationId" ColumnName="IntegrationId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Multiply" ColumnName="Multiply" />
+                <ScalarProperty Name="Combinations" ColumnName="Combinations" />
+                <ScalarProperty Name="GameColumns" ColumnName="GameColumns" />
+                <ScalarProperty Name="MaxOdd" ColumnName="MaxOdd" />
+                <ScalarProperty Name="MaxPrize" ColumnName="MaxPrize" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Prize" ColumnName="Prize" />
+                <ScalarProperty Name="Odd" ColumnName="Odd" />
+                <ScalarProperty Name="ResultDate" ColumnName="ResultDate" />
+                <ScalarProperty Name="CouponType" ColumnName="CouponType" />
+                <ScalarProperty Name="AccountTerm" ColumnName="AccountTerm" />
+                <ScalarProperty Name="Draw" ColumnName="Draw" />
+                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+                <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="Refund" ColumnName="Refund" />
+                <ScalarProperty Name="Net" ColumnName="Net" />
+                <ScalarProperty Name="Gross" ColumnName="Gross" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
+                <ScalarProperty Name="FindSuccess" ColumnName="FindSuccess" />
+                <ScalarProperty Name="PredefinedCouponId" ColumnName="PredefinedCouponId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
